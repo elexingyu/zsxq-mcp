@@ -189,5 +189,10 @@ async def get_group_info(
 """
 
 
-if __name__ == "__main__":
+def main():
+    """Main entry point for the package"""
     mcp.run()
+
+
+if __name__ == "__main__":
+    main()

@@ -12,24 +12,46 @@
 
 ## 安装
 
-### 方法一：使用 UVX 快速启动（推荐）
+### 方法一：使用 pip 安装（推荐）
 
-🚀 **无需预先安装依赖，一键启动！**
+📦 **从 PyPI 安装，无需克隆仓库！**
 
 ```bash
-cd zsxq-mcp
-./start_with_uvx.sh
+pip install zsxq-mcp
 ```
 
-或直接使用 uvx：
+Claude Desktop 配置：
+```json
+{
+  "mcpServers": {
+    "zsxq": {
+      "command": "zsxq-mcp",
+      "env": {
+        "ZSXQ_COOKIE": "your_cookie_value_here",
+        "ZSXQ_GROUP_ID": "28885518425541"
+      }
+    }
+  }
+}
+```
+
+### 方法二：使用 UVX 快速启动
+
+🚀 **临时运行，无需安装！**
+
+```bash
+uvx zsxq-mcp
+```
+
+或从本地源码运行：
 ```bash
 cd zsxq-mcp
 uvx --from . python -m zsxq_mcp.server
 ```
 
-> 📖 **详细说明**: 查看 [UVX_STARTUP.md](./UVX_STARTUP.md) 了解完整的 uvx 使用指南
+> 📖 **详细说明**: 查看 [PACKAGE_INSTALLATION.md](./PACKAGE_INSTALLATION.md) 了解完整的安装指南
 
-### 方法二：传统安装
+### 方法三：从源码安装
 
 #### 1. 克隆或创建项目
 
