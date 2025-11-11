@@ -75,7 +75,7 @@ uvx --from git+https://github.com/your-username/zsxq-mcp.git python -m zsxq_mcp.
       ],
       "env": {
         "ZSXQ_COOKIE": "your_cookie_value_here",
-        "ZSXQ_GROUP_ID": "28885518425541"
+        "ZSXQ_GROUP_ID": "your_group_id_here"
       }
     }
   }

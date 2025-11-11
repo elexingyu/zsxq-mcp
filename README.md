@@ -42,7 +42,7 @@ pip install -e .
 ### 2. 获取星球 ID
 
 访问星球页面，URL 中的数字部分即为星球 ID：
-`https://wx.zsxq.com/group/28885518425541` → `28885518425541`
+`https://wx.zsxq.com/group/12345678901234` → `12345678901234`
 
 ### 3. 配置 Claude Desktop
 
@@ -58,7 +58,7 @@ pip install -e .
       "command": "zsxq-mcp",
       "env": {
         "ZSXQ_COOKIE": "your_cookie_value_here",
-        "ZSXQ_GROUP_ID": "28885518425541"
+        "ZSXQ_GROUP_ID": "your_group_id_here"
       }
     }
   }
