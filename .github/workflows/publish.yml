@@ -27,11 +27,11 @@ jobs:
 
     - name: Install dependencies
       run: |
-        uv pip install --dev -e .
+        uv pip install -e ".[dev]"
 
     - name: Run tests
       run: |
-        pytest
+        uv run pytest
 
   build:
     needs: test
@@ -54,8 +54,8 @@ jobs:
 
     - name: Check package
       run: |
-        uv pip install twine
-        python -m twine check dist/*
+        uv run pip install twine
+        uv run python -m twine check dist/*
 
   publish:
     needs: build
