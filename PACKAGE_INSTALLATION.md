@@ -8,28 +8,28 @@
 
 ```bash
 # 从 PyPI 安装
-pip install zsxq-mcp
+pip install zsxq-publisher
 
 # 或者安装最新版本
-pip install --upgrade zsxq-mcp
+pip install --upgrade zsxq-publisher
 ```
 
 ### 方法二：使用 uvx（临时运行）
 
 ```bash
 # 临时运行，无需安装
-uvx zsxq-mcp
+uvx zsxq-publisher
 
 # 或者从 git 仓库运行
-uvx --from git+https://github.com/yourusername/zsxq-mcp.git zsxq-mcp
+uvx --from git+https://github.com/yourusername/zsxq-publisher.git zsxq-publisher
 ```
 
 ### 方法三：从源码安装
 
 ```bash
 # 克隆仓库
-git clone https://github.com/yourusername/zsxq-mcp.git
-cd zsxq-mcp
+git clone https://github.com/yourusername/zsxq-publisher.git
+cd zsxq-publisher
 
 # 安装依赖
 pip install -e .
@@ -41,7 +41,7 @@ pip install -e .
 
 ```bash
 # 创建配置文件
-cat > ~/.zsxq-mcp.env << EOF
+cat > ~/.zsxq-publisher.env << EOF
 ZSXQ_COOKIE=your_complete_cookie_value_here
 ZSXQ_GROUP_ID=your_group_id_here
 EOF
@@ -54,7 +54,7 @@ EOF
 {
   "mcpServers": {
     "zsxq": {
-      "command": "zsxq-mcp",
+      "command": "zsxq-publisher",
       "env": {
         "ZSXQ_COOKIE": "your_cookie_value_here",
         "ZSXQ_GROUP_ID": "your_group_id_here"
@@ -70,7 +70,7 @@ EOF
   "mcpServers": {
     "zsxq": {
       "command": "uvx",
-      "args": ["zsxq-mcp"],
+      "args": ["zsxq-publisher"],
       "env": {
         "ZSXQ_COOKIE": "your_cookie_value_here",
         "ZSXQ_GROUP_ID": "your_group_id_here"
@@ -84,7 +84,7 @@ EOF
 
 ```bash
 # 检查命令是否可用
-zsxq-mcp --help
+zsxq-publisher --help
 
 # 或者使用 python 模块
 python -m zsxq_mcp --help
@@ -105,8 +105,8 @@ python -m zsxq_mcp --help
 
 ```bash
 # 克隆仓库
-git clone https://github.com/yourusername/zsxq-mcp.git
-cd zsxq-mcp
+git clone https://github.com/yourusername/zsxq-publisher.git
+cd zsxq-publisher
 
 # 创建虚拟环境（推荐）
 python -m venv venv
@@ -126,13 +126,13 @@ python -m build
 
 ```bash
 # 检查当前版本
-pip show zsxq-mcp
+pip show zsxq-publisher
 
 # 更新到最新版本
-pip install --upgrade zsxq-mcp
+pip install --upgrade zsxq-publisher
 
 # 安装特定版本
-pip install zsxq-mcp==0.1.0
+pip install zsxq-publisher==0.1.0
 ```
 
 ## 🐛 故障排除
@@ -147,39 +147,39 @@ echo %PATH%
 echo $PATH
 
 # 重新安装
-pip uninstall zsxq-mcp
-pip install zsxq-mcp
+pip uninstall zsxq-publisher
+pip install zsxq-publisher
 ```
 
 ### 问题 2: 权限错误
 
 ```bash
 # 使用用户安装
-pip install --user zsxq-mcp
+pip install --user zsxq-publisher
 
 # 或者使用虚拟环境
 python -m venv zsxq-env
 source zsxq-env/bin/activate
-pip install zsxq-mcp
+pip install zsxq-publisher
 ```
 
 ### 问题 3: 依赖冲突
 
 ```bash
 # 使用 uvx 避免依赖冲突
-uvx zsxq-mcp
+uvx zsxq-publisher
 
 # 或者创建干净的环境
 python -m venv fresh-env
 source fresh-env/bin/activate
-pip install zsxq-mcp
+pip install zsxq-publisher
 ```
 
 ### 问题 4: 网络问题
 
 ```bash
 # 使用国内镜像源
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ zsxq-mcp
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ zsxq-publisher
 
 # 或者配置永久镜像
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple/
@@ -187,15 +187,15 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple/
 
 ## 📚 更多资源
 
-- **GitHub 仓库**: https://github.com/yourusername/zsxq-mcp
-- **PyPI 页面**: https://pypi.org/project/zsxq-mcp/
-- **文档**: https://github.com/yourusername/zsxq-mcp#readme
-- **问题反馈**: https://github.com/yourusername/zsxq-mcp/issues
+- **GitHub 仓库**: https://github.com/yourusername/zsxq-publisher
+- **PyPI 页面**: https://pypi.org/project/zsxq-publisher/
+- **文档**: https://github.com/yourusername/zsxq-publisher#readme
+- **问题反馈**: https://github.com/yourusername/zsxq-publisher/issues
 
 ## 🤝 贡献
 
-欢迎贡献代码！请查看 [CONTRIBUTING.md](https://github.com/yourusername/zsxq-mcp/blob/main/CONTRIBUTING.md) 了解详细信息。
+欢迎贡献代码！请查看 [CONTRIBUTING.md](https://github.com/yourusername/zsxq-publisher/blob/main/CONTRIBUTING.md) 了解详细信息。
 
 ## 📄 许可证
 
-本项目使用 MIT 许可证。详见 [LICENSE](https://github.com/yourusername/zsxq-mcp/blob/main/LICENSE) 文件。
+本项目使用 MIT 许可证。详见 [LICENSE](https://github.com/yourusername/zsxq-publisher/blob/main/LICENSE) 文件。

@@ -1,5 +1,5 @@
 [project]
-name = "zsxq-mcp"
+name = "zsxq-publisher"
 version = "0.1.0"
 description = "MCP server for publishing content to Zhishixingqiu (知识星球)"
 readme = "README.md"
@@ -48,7 +48,7 @@ Repository = "https://github.com/yourusername/zsxq-mcp.git"
 "Source Code" = "https://github.com/yourusername/zsxq-mcp"
 
 [project.scripts]
-zsxq-mcp = "zsxq_mcp.server:main"
+zsxq-publisher = "zsxq_mcp.server:main"
 
 [project.optional-dependencies]
 dev = [
