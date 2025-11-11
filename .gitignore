@@ -45,5 +45,6 @@ htmlcov/
 # Development tools
 .serena/
 .specstory/
+Claude/
 DS_Store
 Thumbs.db
