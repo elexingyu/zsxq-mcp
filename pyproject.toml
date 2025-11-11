@@ -1,14 +1,14 @@
 [project]
-name = "zsxq-publisher"
+name = "zsxq-mcp"
 version = "0.1.0"
 description = "MCP server for publishing content to Zhishixingqiu (知识星球)"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "Your Name", email = "your.email@example.com"},
+    {name = "elexingyu", email = "elexingyu@example.com"},
 ]
 maintainers = [
-    {name = "Your Name", email = "your.email@example.com"},
+    {name = "elexingyu", email = "elexingyu@example.com"},
 ]
 keywords = [
     "mcp",
@@ -41,14 +41,14 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/zsxq-mcp"
-Documentation = "https://github.com/yourusername/zsxq-mcp#readme"
-Repository = "https://github.com/yourusername/zsxq-mcp.git"
-"Bug Tracker" = "https://github.com/yourusername/zsxq-mcp/issues"
-"Source Code" = "https://github.com/yourusername/zsxq-mcp"
+Homepage = "https://github.com/elexingyu/zsxq-mcp"
+Documentation = "https://github.com/elexingyu/zsxq-mcp#readme"
+Repository = "https://github.com/elexingyu/zsxq-mcp.git"
+"Bug Tracker" = "https://github.com/elexingyu/zsxq-mcp/issues"
+"Source Code" = "https://github.com/elexingyu/zsxq-mcp"
 
 [project.scripts]
-zsxq-publisher = "zsxq_mcp.server:main"
+zsxq-mcp = "zsxq_mcp.server:main"
 
 [project.optional-dependencies]
 dev = [

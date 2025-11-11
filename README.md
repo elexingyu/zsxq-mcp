@@ -15,13 +15,13 @@
 ### 方法一：pip 安装（推荐）
 
 ```bash
-pip install zsxq-publisher
+pip install zsxq-mcp
 ```
 
 ### 方法二：uvx 快速启动
 
 ```bash
-uvx zsxq-publisher
+uvx zsxq-mcp
 ```
 
 ### 方法三：从源码安装
@@ -55,7 +55,7 @@ pip install -e .
 {
   "mcpServers": {
     "zsxq": {
-      "command": "zsxq-publisher",
+      "command": "zsxq-mcp",
       "env": {
         "ZSXQ_COOKIE": "your_cookie_value_here",
         "ZSXQ_GROUP_ID": "your_group_id_here"

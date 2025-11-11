@@ -15,7 +15,7 @@
 
 ```bash
 # 进入项目目录
-cd zsxq-publisher
+cd zsxq-mcp
 
 # 运行启动脚本
 ./start_with_uvx.sh
@@ -25,7 +25,7 @@ cd zsxq-publisher
 
 ```bash
 # 进入项目目录
-cd zsxq-publisher
+cd zsxq-mcp
 
 # 使用 uvx 直接运行
 uvx --from . python -m zsxq_mcp.server
@@ -35,7 +35,7 @@ uvx --from . python -m zsxq_mcp.server
 
 ```bash
 # 直接从 Git 仓库运行（无需克隆）
-uvx --from git+https://github.com/your-username/zsxq-publisher.git python -m zsxq_mcp.server
+uvx --from git+https://github.com/your-username/zsxq-mcp.git python -m zsxq_mcp.server
 ```
 
 ## 配置要求
@@ -68,7 +68,7 @@ uvx --from git+https://github.com/your-username/zsxq-publisher.git python -m zsx
       "command": "uvx",
       "args": [
         "--from",
-        "/path/to/your/zsxq-publisher",
+        "/path/to/your/zsxq-mcp",
         "python",
         "-m",
         "zsxq_mcp.server"
@@ -82,7 +82,7 @@ uvx --from git+https://github.com/your-username/zsxq-publisher.git python -m zsx
 }
 ```
 
-**注意**：将 `/path/to/your/zsxq-publisher` 替换为项目的实际路径。
+**注意**：将 `/path/to/your/zsxq-mcp` 替换为项目的实际路径。
 
 ## 优势
 
