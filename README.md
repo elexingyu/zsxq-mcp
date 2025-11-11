@@ -51,22 +51,6 @@ pip install -e .
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Windows**: `%APPDATA%/Claude/claude_desktop_config.json`
 
-#### pip 安装方式：
-
-```json
-{
-  "mcpServers": {
-    "zsxq": {
-      "command": "zsxq-mcp",
-      "env": {
-        "ZSXQ_COOKIE": "your_cookie_value_here",
-        "ZSXQ_GROUP_ID": "your_group_id_here"
-      }
-    }
-  }
-}
-```
-
 #### uvx 方式（推荐，无需预先安装）：
 
 ```json
@@ -84,23 +68,6 @@ pip install -e .
 }
 ```
 
-#### 源码安装方式：
-
-```json
-{
-  "mcpServers": {
-    "zsxq": {
-      "command": "python",
-      "args": ["-m", "zsxq_mcp.server"],
-      "cwd": "/path/to/your/zsxq-mcp",
-      "env": {
-        "ZSXQ_COOKIE": "your_cookie_value_here",
-        "ZSXQ_GROUP_ID": "your_group_id_here"
-      }
-    }
-  }
-}
-```
 
 重启 Claude Desktop 即可使用。
 
