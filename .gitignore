@@ -41,3 +41,9 @@ htmlcov/
 
 # Logs
 *.log
+
+# Development tools
+.serena/
+.specstory/
+DS_Store
+Thumbs.db
