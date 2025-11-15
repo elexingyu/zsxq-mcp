@@ -23,7 +23,7 @@ class ZSXQClient:
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
             "Content-Type": "application/json",
             "Accept": "application/json, text/plain, */*",
-            "X-Version": "2.72.0",
+            "X-Version": "2.84.0",
             "X-Request-Id": "uuid-" + str(__import__('uuid').uuid4()),
         }
 
@@ -175,3 +175,79 @@ class ZSXQClient:
                 raise Exception(f"Failed to get group info: {result}")
 
             return result["resp_data"]["group"]
+
+    async def schedule_topic(
+        self,
+        group_id: str,
+        content: str,
+        scheduled_time: str,
+        image_ids: Optional[list[str]] = None,
+        mentioned_user_ids: Optional[list[str]] = None,
+    ) -> Dict[str, Any]:
+        """
+        Schedule a topic to be published at a specific time
+
+        Args:
+            group_id: Target group ID
+            content: Text content to publish
+            scheduled_time: Scheduled time in ISO format with timezone (e.g., "2025-11-15T09:53:00.000+0800")
+            image_ids: Optional list of uploaded image IDs
+            mentioned_user_ids: Optional list of user IDs to mention
+
+        Returns:
+            API response data
+
+        Raises:
+            httpx.HTTPError: If scheduling fails
+        """
+        req_data: Dict[str, Any] = {
+            "req_data": {
+                "topic": {
+                    "text": content,
+                    "image_ids": image_ids if image_ids else [],
+                    "file_ids": [],
+                    "mentioned_user_ids": mentioned_user_ids if mentioned_user_ids else []
+                },
+                "scheduled_time": scheduled_time
+            }
+        }
+
+        async with httpx.AsyncClient() as client:
+            response = await client.post(
+                f"{self.BASE_URL}/v2/groups/{group_id}/scheduled_jobs",
+                headers=self.headers,
+                json=req_data,
+            )
+            response.raise_for_status()
+            result = response.json()
+
+            if not result.get("succeeded"):
+                raise Exception(f"Failed to schedule topic: {result}")
+
+            return result["resp_data"]
+
+    async def get_scheduled_jobs(self, group_id: str) -> Dict[str, Any]:
+        """
+        Get list of scheduled jobs/topics for a group
+
+        Args:
+            group_id: Group ID to query
+
+        Returns:
+            API response data with scheduled jobs
+
+        Raises:
+            httpx.HTTPError: If request fails
+        """
+        async with httpx.AsyncClient() as client:
+            response = await client.get(
+                f"{self.BASE_URL}/v2/groups/{group_id}/scheduled_jobs",
+                headers=self.headers
+            )
+            response.raise_for_status()
+            result = response.json()
+
+            if not result.get("succeeded"):
+                raise Exception(f"Failed to get scheduled jobs: {result}")
+
+            return result["resp_data"]

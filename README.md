@@ -1,66 +1,37 @@
 # ZSXQ MCP Server
 
-知识星球 MCP 服务器 - 通过 Model Context Protocol 发布内容到知识星球。
+知识星球 MCP 服务器 - 通过 Model Context Protocol 自动发布内容到知识星球。
 
-## 功能特性
+## 🔥 核心功能
 
-- ✅ 发布文字主题到知识星球
-- ✅ 上传并发布带图片的内容
+- ✅ 发布文字主题
+- ✅ 上传并发布带图片的主题
 - ✅ 从本地文件读取内容发布
+- ✅ 灵活的环境变量配置
 - ✅ Cookie 身份验证
-- ✅ 灵活的配置方式
+- ✅ 定时发布主题
+- ✅ 定时任务管理
 
-## 安装
+## 📦 安装与配置
 
-### 方法一：pip 安装（推荐）
-
-```bash
-pip install zsxq-mcp
-```
-
-### 方法二：uvx 快速启动
+### 1. 安装 uv 工具（首次使用）
 
 ```bash
-uvx zsxq-mcp
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### 方法三：从源码安装
+### 2. Claude Desktop 配置
 
-```bash
-pip install -e .
-```
-
-## 配置
-
-### 1. 获取知识星球 Cookie
-
-1. 浏览器登录知识星球（https://wx.zsxq.com/）
-2. 打开开发者工具（F12）
-3. Network 标签页中找到 API 请求的 `Cookie` 字段
-4. 复制完整 Cookie 值
-
-### 2. 获取星球 ID
-
-访问星球页面，URL 中的数字部分即为星球 ID：
-`https://wx.zsxq.com/group/12345678901234` → `12345678901234`
-
-### 3. 配置 Claude Desktop
-
-在配置文件中添加：
-
-**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-**Windows**: `%APPDATA%/Claude/claude_desktop_config.json`
-
-#### uvx 方式（推荐，无需预先安装）：
+直接在配置文件中使用 uvx 运行：
 
 ```json
 {
   "mcpServers": {
     "zsxq": {
       "command": "uvx",
-      "args": ["zsxq-mcp"],
+      "args": ["zsxq-mcp", "server"],
       "env": {
-        "ZSXQ_COOKIE": "your_cookie_value_here",
+        "ZSXQ_COOKIE": "your_cookie_here",
         "ZSXQ_GROUP_ID": "your_group_id_here"
       }
     }
@@ -68,43 +39,79 @@ pip install -e .
 }
 ```
 
-
 重启 Claude Desktop 即可使用。
 
-## 使用方法
+### 配置说明
 
-### 发布文字主题
+| 参数 | 说明 | 必填 |
+|------|------|------|
+| `ZSXQ_COOKIE` | 知识星球浏览器 Cookie | ✅ |
+| `ZSXQ_GROUP_ID` | 星球 ID（URL 中获取） | 🔹 |
 
-```
-帮我发布到知识星球："今天学习了 MCP 的使用方法，非常有趣！"
-```
+> Cookie 获取方法：浏览器登录知识星球 → F12 开发者工具 → Network → 任意 API 请求 → 请求头 `Cookie` 字段
 
-### 发布文件内容
+## 🚀 使用示例
 
-```
-把这个文件发布到知识星球：/Users/xxx/article.txt
-```
-
-### 发布带图片内容
+### 在 Claude 中使用
 
 ```
-发布带图片的动态："分享今天的成果"，图片：/Users/xxx/screenshot.png
+帮我发布一条动态到知识星球："今天学习了 MCP 的使用方法！"
 ```
 
-## 可用工具
+```
+把这个文件的内容发布到知识星球：/path/to/article.txt
+```
 
-- `publish_topic` - 发布文字主题
-- `publish_topic_from_file` - 从文件发布内容
-- `publish_topic_with_images` - 发布带图片的主题
-- `upload_image` - 上传图片
-- `get_group_info` - 获取星球信息
+```
+帮我发布一条带图片的动态，内容是"分享今天的成果"，图片路径：/path/to/screenshot.png
+```
 
-## 安全提醒
+```
+帮我定时发布一条动态，5分钟后发布，内容是"定时测试"
+```
 
-- ⚠️ 请勿分享你的 Cookie，它包含登录凭证
-- 🔒 Cookie 会定期过期，需要重新获取
-- 📖 详细配置说明请查看 [CONFIGURATION.md](./CONFIGURATION.md)
+```
+帮我查看所有定时发布的任务
+```
 
-## 许可证
+### MCP 工具列表
+
+| 工具 | 功能 |
+|------|------|
+| `publish_topic` | 发布文字主题 |
+| `publish_topic_from_file` | 从文件发布内容 |
+| `publish_topic_with_images` | 发布带图片的主题 |
+| `upload_image` | 单独上传图片 |
+| `get_group_info` | 获取星球信息 |
+| `schedule_topic` | 定时发布主题 |
+| `get_scheduled_jobs` | 获取定时任务列表 |
+
+## 📌 注意事项
+
+- 🔒 Cookie 包含登录凭证，请勿泄露
+- ⏰ Cookie 可能过期，需定期更新
+- 💡 未指定 `ZSXQ_GROUP_ID` 时，每次调用需手动指定
+
+## 📁 开发相关
+
+### 本地开发
+
+```bash
+git clone https://github.com/your-repo/zsxq-mcp.git
+cd zsxq-mcp
+pip install -e .
+```
+
+### 调试工具
+
+```bash
+# 使用 MCP Inspector 调试（uvx 方式）
+npx @modelcontextprotocol/inspector uvx zsxq-mcp server
+
+# 或本地开发调试
+uvx zsxq-mcp server
+```
+
+## 📄 许可证
 
 MIT License

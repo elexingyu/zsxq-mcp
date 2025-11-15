@@ -189,8 +189,79 @@ async def get_group_info(
 """
 
 
+@mcp.tool()
+async def schedule_topic(
+    content: str,
+    scheduled_time: str,
+    group_id: Optional[str] = None,
+    cookie: Optional[str] = None,
+) -> str:
+    """
+    Schedule a text topic to be published at a specific time
+
+    Args:
+        content: The text content to publish
+        scheduled_time: Scheduled time in ISO format with timezone (e.g., "2025-11-15T09:53:00.000+0800")
+        group_id: Target group ID (optional if set in config)
+        cookie: Authentication cookie (optional if set in config)
+
+    Returns:
+        Success message confirming the scheduled topic
+    """
+    client = get_client(cookie)
+    target_group = get_group_id(group_id)
+
+    await client.schedule_topic(
+        group_id=target_group,
+        content=content,
+        scheduled_time=scheduled_time
+    )
+
+    return f"✅ Topic scheduled successfully for {scheduled_time}!"
+
+
+@mcp.tool()
+async def get_scheduled_jobs(
+    group_id: Optional[str] = None,
+    cookie: Optional[str] = None,
+) -> str:
+    """
+    Get list of all scheduled jobs/topics
+
+    Args:
+        group_id: Target group ID (optional if set in config)
+        cookie: Authentication cookie (optional if set in config)
+
+    Returns:
+        Formatted list of scheduled topics
+    """
+    client = get_client(cookie)
+    target_group = get_group_id(group_id)
+
+    result = await client.get_scheduled_jobs(target_group)
+
+    jobs = result.get("jobs", [])
+    if not jobs:
+        return "📭 No scheduled topics found."
+
+    output = "📅 Scheduled Topics:\n"
+    for i, job in enumerate(jobs, 1):
+        job_id = job.get("job_id", "N/A")
+        scheduled_time = job.get("scheduled_time", "N/A")
+        topic = job.get("topic", {})
+        topic_id = topic.get("topic_id", "N/A")
+        text = topic.get("talk", {}).get("text", "N/A")
+
+        output += f"\n{i}. Job ID: {job_id}"
+        output += f"\n   Scheduled Time: {scheduled_time}"
+        output += f"\n   Topic ID: {topic_id}"
+        output += f"\n   Content: {text[:100]}..."
+
+    return output
+
+
 def main():
-    """Main entry point for the package"""
+    """Main entry point for the server"""
     mcp.run()
 
 
