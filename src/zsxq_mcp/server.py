@@ -201,7 +201,7 @@ async def schedule_topic(
 
     Args:
         content: The text content to publish
-        scheduled_time: Scheduled time in ISO format with timezone (e.g., "2025-11-15T09:53:00.000+0800")
+        scheduled_time: Scheduled time in ISO format with timezone (supports both formats: "2025-11-15T09:53:00.000+08:00" or "2025-11-15T09:53:00.000+0800")
         group_id: Target group ID (optional if set in config)
         cookie: Authentication cookie (optional if set in config)
 

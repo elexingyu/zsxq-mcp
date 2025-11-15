@@ -2,6 +2,7 @@
 
 import httpx
 from typing import Optional, Dict, Any
+from datetime import datetime
 from pathlib import Path
 
 
@@ -200,6 +201,17 @@ class ZSXQClient:
         Raises:
             httpx.HTTPError: If scheduling fails
         """
+        # Convert scheduled_time to the format expected by API (with colon in timezone)
+        try:
+            # Parse the input time string
+            dt = datetime.fromisoformat(scheduled_time)
+            # Format with colon in timezone offset
+            tz_offset = dt.strftime("%z")
+            formatted_tz = f"{tz_offset[:3]}:{tz_offset[3:]}" if len(tz_offset) == 5 else tz_offset
+            formatted_scheduled_time = dt.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + formatted_tz
+        except ValueError as e:
+            raise ValueError(f"Invalid scheduled_time format. Please use ISO format with timezone, e.g., '2025-11-15T16:00:00.000+08:00' or '2025-11-15T16:00:00.000+0800': {str(e)}")
+
         req_data: Dict[str, Any] = {
             "req_data": {
                 "topic": {
@@ -208,7 +220,7 @@ class ZSXQClient:
                     "file_ids": [],
                     "mentioned_user_ids": mentioned_user_ids if mentioned_user_ids else []
                 },
-                "scheduled_time": scheduled_time
+                "scheduled_time": formatted_scheduled_time
             }
         }
 
