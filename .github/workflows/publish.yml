@@ -35,7 +35,7 @@ jobs:
 
     - name: Run tests
       run: |
-        uv run pytest
+        uv run pytest || [ $? -eq 5 ] && echo "No tests collected, but proceeding with build..." || exit $?
 
   build:
     needs: test
