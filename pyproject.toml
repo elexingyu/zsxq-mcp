@@ -1,6 +1,6 @@
 [project]
 name = "zsxq-mcp"
-version = "0.2.0"
+version = "0.2.4"
 description = "MCP server for publishing content to Zhishixingqiu (知识星球)"
 readme = "README.md"
 requires-python = ">=3.10"
